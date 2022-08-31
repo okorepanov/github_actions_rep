@@ -1,0 +1,31 @@
+name: Clear Old Migrations
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  clear_migrtions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone Repository
+        uses: actions/checkout@v3
+
+      - name: Bundle
+        run: |
+          sudo gem install rake
+          sudo gem install concurrent-ruby
+          sudo gem install i18n
+          rake migrations:clear_old_migrations
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v4
+        with:
+          commit-message: creates test file
+          title: Create Test File
+          body: Somebody
+          branch: clear-old-migrations
+          assignees: okorepanov
+
+
