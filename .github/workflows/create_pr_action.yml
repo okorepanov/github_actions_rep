@@ -1,7 +1,9 @@
-name: Clear Old Migrations
+name: Create Pull Request
 
 on:
-  push
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * *'
 
 jobs:
   clear_migrtions:
@@ -10,19 +12,15 @@ jobs:
       - name: Clone Repository
         uses: actions/checkout@v3
 
-      - name: Bundle
-        run: |
-          sudo gem install bundler
-          bundle install
-          rake migrations:clear_old_migrations
+      - name: Change
+        run: echo 'test_content' > test.txt
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4
         with:
-          commit-message: creates test file
           title: Create Test File
           body: Somebody
-          branch: clear-old-migrations
+          commit-message: creates test file
           assignees: okorepanov
 
 
