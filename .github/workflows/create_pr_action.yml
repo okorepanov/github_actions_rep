@@ -1,0 +1,26 @@
+name: Create Pull Request
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  clear_migrtions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone Repository
+        uses: actions/checkout@v3
+
+      - name: Change
+        run: echo 'test_content' > test.txt
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v4
+        with:
+          title: Create Test File
+          body: Somebody
+          commit-message: creates test file
+          assignees: okorepanov
+
+
