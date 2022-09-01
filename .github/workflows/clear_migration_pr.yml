@@ -14,9 +14,8 @@ jobs:
 
       - name: Bundle
         run: |
-          sudo gem install rake
-          sudo gem install concurrent-ruby
-          sudo gem install i18n
+          sudo gem install bundler
+          bundle install
           rake migrations:clear_old_migrations
 
       - name: Create Pull Request
