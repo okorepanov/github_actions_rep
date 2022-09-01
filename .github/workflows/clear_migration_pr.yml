@@ -1,9 +1,7 @@
 name: Clear Old Migrations
 
 on:
-  push:
-    branches:
-      - master
+  push
 
 jobs:
   clear_migrtions:
