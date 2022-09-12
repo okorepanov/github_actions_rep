@@ -6,3 +6,8 @@ PreCommit:
     command: ['bundle', 'exec', 'rubocop']
 
 verify_signatures: false
+
+PostCheckout:
+  CustomScript:
+    enabled: true
+    required_executable: '.check_migration_script.sh'
