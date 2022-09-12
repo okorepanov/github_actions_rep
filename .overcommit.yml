@@ -4,8 +4,8 @@ PreCommit:
     on_warn: pass
     problem_on_unmodified_line: warn
     command: ['bundle', 'exec', 'rubocop']
-  CustomScript:
-    enabled: true
-    command: ['sh', 'check_migration_script.sh']
+#  CustomScript:
+#    enabled: true
+#    command: ['sh', 'check_migration_script.sh']
 
 verify_signatures: false

@@ -16,11 +16,16 @@ jobs:
         run: echo 'test_content' > test.txt
 
       - name: Create Pull Request
+        id: cpr
         uses: peter-evans/create-pull-request@v4
         with:
           title: Create Test File
           body: Somebody
           commit-message: creates test file
           assignees: okorepanov
+
+      - name: Summary
+        if: ${{ steps.cpr.outputs.pull-request-url }}
+        run: echo '#### PR link -> ${{ steps.cpr.outputs.pull-request-url }}' >> $GITHUB_STEP_SUMMARY
 
 

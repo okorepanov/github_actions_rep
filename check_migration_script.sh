@@ -1,3 +1,5 @@
 #!/bin/bash
 
-exit 0
+set -e
+
+exit 1
