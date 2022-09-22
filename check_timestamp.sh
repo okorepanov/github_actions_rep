@@ -1,7 +1,7 @@
 #!/bin/bash
 
 set -e # exit on first exception
-#set -x # enable debug
+set -x # enable debug
 
 #MINIMUM_AVAILABLE_DATE=$(date -d '-1 month' +'%Y%m') #macos $(date -v -1m +'%Y%m')
 

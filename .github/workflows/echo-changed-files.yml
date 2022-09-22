@@ -19,6 +19,7 @@ jobs:
         id: changed-files
         uses: tj-actions/changed-files@v29
 
-      - name: List all changed files
+      - name: Check Timstamps
+        if: steps.changed-files-specific.outputs.any_changed == 'true'
         run: |
-          steps.changed-files.outputs.all_changed_files | grep 'db/data\|migrate' | xargs basename -a |  xargs sh check_timestamp.sh
+          ${{ steps.changed-files.outputs.all_changed_files }} | grep 'db/data\|migrate' | xargs basename -a |  xargs sh check_timestamp.sh
