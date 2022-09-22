@@ -2,11 +2,7 @@ name: Echo changed files
 
 on:
   push:
-    branches:
-      - master
   pull_request:
-    branches:
-      - master
 
 jobs:
   echo:
@@ -20,6 +16,6 @@ jobs:
         uses: tj-actions/changed-files@v29
 
       - name: Check Timstamps
-        if: steps.changed-files-specific.outputs.any_changed == 'true'
+        if: steps.changed-files.outputs.any_changed == 'true'
         run: |
           ${{ steps.changed-files.outputs.all_changed_files }} | grep 'db/data\|migrate' | xargs basename -a |  xargs sh check_timestamp.sh
