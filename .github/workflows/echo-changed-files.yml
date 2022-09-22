@@ -1,4 +1,4 @@
-name: Create Pull Request
+name: Echo changed files
 
 on:
   push:
@@ -21,6 +21,4 @@ jobs:
 
       - name: List all changed files
         run: |
-          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-            echo "$file was changed"
-          done
+          steps.changed-files.outputs.all_changed_files | grep 'db/data\|migrate' | xargs basename -a |  xargs sh check_timestamp.sh
