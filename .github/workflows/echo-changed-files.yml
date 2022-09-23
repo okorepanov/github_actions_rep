@@ -11,12 +11,13 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          fetch-depth: 2
+          fetch-depth: 0
 
       - name: Get changed files
         id: changed-files
         uses: tj-actions/changed-files@v29
         with:
+          base_sha: ${{ github.event.pull_request.base.sha }}
           files: |
             db/data/**
             db/migrate/**
