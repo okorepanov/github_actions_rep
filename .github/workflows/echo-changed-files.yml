@@ -1,22 +1,23 @@
-name: Echo changed files
+name: CI
 
 on:
-  push:
   pull_request:
+    types: [opened, reopened, synchronize]
 
 jobs:
-  echo:
+  build:
     runs-on: ubuntu-latest
-    name: Echo Changed Files
+    name: Test changed-files
     steps:
       - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
       - name: Get changed files
         id: changed-files
         uses: tj-actions/changed-files@v29
 
       - name: List all changed files
-#        if: steps.changed-files.outputs.any_changed == 'true'
         run: |
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             echo "$file was changed"
