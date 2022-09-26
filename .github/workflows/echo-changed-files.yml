@@ -23,4 +23,4 @@ jobs:
 
       - name: List all changed files
         run: |
-          sh check_migration_script ${{ steps.changed-files.outputs.all_changed_files }}
+          sh check_migration_script.sh ${{ steps.changed-files.outputs.all_changed_files }}
