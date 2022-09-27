@@ -22,6 +22,6 @@ jobs:
             db/migrate/**
 
       - name: List all changed files
-        if: steps.changed-files-specific.outputs.any_changed == 'true'
+        if: steps.changed-files.outputs.any_changed == 'true'
         run: |
           ./check-migrations-timestamps.sh ${{ steps.changed-files.outputs.all_changed_files }}
