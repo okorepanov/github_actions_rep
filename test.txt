@@ -1,2 +1,1 @@
-Some test file for check VRESION2
-qweqwqewqewqew
+Some test file for check VRESION3
