@@ -1,0 +1,30 @@
+name: 'Check Migrations Timestamps'
+
+on:
+  pull_request:
+    branches-ignore:
+      - release
+    types: [opened, reopened, synchronize]
+
+jobs:
+  build:
+    if: ${{ !startsWith(github.head_ref, 'release') }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Get changed migrations files
+        id: changed-files
+        uses: tj-actions/changed-files@v29
+        with:
+          files: |
+            db/data/**
+            db/migrate/**
+
+      - name: List all changed files
+        if: steps.changed-files.outputs.any_changed == 'true'
+        run: |
+          ./check-migrations-timestamps.sh ${{ steps.changed-files.outputs.all_changed_files }}
