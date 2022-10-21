@@ -8,6 +8,8 @@ on:
 
 jobs:
   build:
+    run_if:
+      if: ${{ !startsWith(github.head_ref, 'release')
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
