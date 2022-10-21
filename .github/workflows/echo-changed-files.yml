@@ -3,7 +3,7 @@ name: 'Check Migrations Timestamps'
 on:
   pull_request:
     branches-ignore:
-      - 'release'
+      - release
     types: [opened, reopened, synchronize]
 
 jobs:
